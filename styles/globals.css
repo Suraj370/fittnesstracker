@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .header {
+    @apply bg-secondary-12 p-4 flex z-40 w-full h-auto items-center justify-center 
+        backdrop-blur-lg backdrop-saturate-150;
+  }
+  .hero__section {
+    @apply p-24 max-sm:p-0;
+  }
+
+  .bmi__calculator{
+    @apply flex flex-col justify-center p-24 max-sm:p-2;
+  }
+
+  .bmi__calculator .heading{
+    @apply mb-10 text-3xl max-md:text-2xl xl:text-4xl  font-extrabold tracking-tight leading-none
+  }
+  .bmi__calculator > p:first-of-type{
+    @apply mb-6 font-light text-white/80 lg:mb-8 md:text-lg lg:text-xl;
+  }
+
+  .fitness__tracker{
+    @apply flex flex-col justify-center p-24 max-sm:p-2;
+  }
+  .fitness__tracker .heading{
+    @apply mb-10 text-3xl max-md:text-2xl xl:text-4xl  font-extrabold tracking-tight leading-none
+  }
+}
