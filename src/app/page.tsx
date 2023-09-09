@@ -1,4 +1,5 @@
-import BMI from "@/components/bmicalculator/BMI";
+import BMI from "@/components/bmicalculator";
+import FitnessTracker from "@/components/fitnesstracker";
 import { ArrowRightIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
 import { Heading, Section } from "@radix-ui/themes";
 import Image from "next/image";
@@ -6,7 +7,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className=" min-h-screen dark:bg-accent-12 dark:text-white">
+    <main>
       <Section className=" hero__section">
         <div className="flex max-lg:flex-col  px-4 py-8 mx-auto gap-8 xl:gap-4 lg:py-16  ">
           <div className="mr-auto flex flex-col place-self-center ">
@@ -59,6 +60,7 @@ export default function Home() {
         <h1 className="heading">
           Fitness Tracker
         </h1>
+        <FitnessTracker/>
 
       </Section>
     </main>

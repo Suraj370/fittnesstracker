@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+main{
+  @apply min-h-screen dark:bg-accent-12 dark:text-white
+}
 @layer components {
   .header {
     @apply bg-secondary-12 p-4 flex z-40 w-full h-auto items-center justify-center 
