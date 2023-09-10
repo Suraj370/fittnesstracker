@@ -1,16 +1,49 @@
-import React from "react";
+'use client'
+import React, { useState, useEffect } from "react";
 import { Box, Heading } from "@radix-ui/themes";
+import * as Dialog from "@radix-ui/react-dialog";
+import dynamic from "next/dynamic";
+import { FitnessData } from "./FitnessData";
+import { Cross2Icon } from "@radix-ui/react-icons";
+import MyPortal from "./MyDialog";
+import MyDialog from "./MyDialog";
+import { useTodos } from "@/store/exercises";
 
 const FitnessTracker = () => {
+  const { todos, toggleTodoAsCompleted, handleDeleteTodo } = useTodos();
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  useEffect(() => {
+    // After the component is mounted on the client side, set isHydrated to true.
+    setIsHydrated(true);
+  }, []);
+
   return (
-    <Box className="bg-gradient-to-b text-black from-primary-3 to to-primary-10 flex  p-10 max-lg:flex-col justify-between">
-      <header className="flex items-center text-white border-b-2 border-white p-5  justify-between w-full">
-        <Heading as="h1" className=" text-xl">
-          Fitness Tracker
-        </Heading>
-        <button className=" bg-accent-12 text-white px-5 py-2 ">Add</button>
-      </header>
-    </Box>
+    <>
+      <Box className="bg-gradient-to-b text-black from-primary-3 to to-primary-10 flex p-10 flex-col justify-between">
+        <Box className="flex items-center text-white border-b-2 border-white p-5 justify-between w-full">
+          <Heading as="h1" className="text-xl">
+            Fitness Tracker
+          </Heading>
+          <MyDialog />
+        </Box>
+        <div>
+          {/* Conditionally render the todos only after hydration */}
+          {isHydrated && (
+            <div>
+              {todos.map((todo) => (
+                <div key={todo.id}>
+                  <div className="flex items-center justify-between">
+                    <p>{todo.exercise}</p>
+                    <p>Reps: {todo.reps}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </Box>
+    </>
   );
 };
 

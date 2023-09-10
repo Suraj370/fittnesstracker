@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Theme } from "@radix-ui/themes";
 import Header from "@/components/common/Header";
-
+import { ExerciseProvider } from "@/store/exercises";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,8 +21,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Theme appearance="dark">
+          <ExerciseProvider>
           <Header />
           {children}
+          </ExerciseProvider>
         </Theme>
       </body>
     </html>
