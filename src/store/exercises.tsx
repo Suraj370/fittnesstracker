@@ -16,7 +16,7 @@ export type ExerciseContext = {
     todos: Exercise[];
     handleAddTodo: (exercise: string, reps:number) => void; //call signature
     toggleTodoAsCompleted: (id: string) => void;
-    handleDeleteTodo: (id: string | undefined) => void;
+    handleDeleteTodo: (id: string) => void;
 }
 
 export const exerciseContext = createContext<ExerciseContext | null>(null)
@@ -53,25 +53,7 @@ export function ExerciseProvider({children}: { children: ReactNode }) {
     }
 
 
-    function updateTodo(exerciseId: string, exercise: string, reps: number) {
-        // Get the current list of todos.
-       console.log(localStorage.getItem("exercises"));
-       
-        // Find the todo with the given ID.
-        const todoIndex = todos.findIndex((todo) => todo.id === exerciseId)
-      
-        // Update the todo.
-        todos[todoIndex] = {
-          id: exerciseId,
-          exercise,
-          reps,
-          completed: false,
-          createdAt: new Date(),
-        }
-      
-        // Save the updated list of todos to localStorage.
-        localStorage.setItem("exercises", JSON.stringify(todos))
-      }
+
 
     const toggleTodoAsCompleted = (id: string) => {
         setTodos((prev) => {

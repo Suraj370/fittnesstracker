@@ -4,7 +4,7 @@ import { FitnessData } from './FitnessData';
 import { EraserIcon } from "@radix-ui/react-icons";
 
 const Card = ({exercise}: {exercise: FitnessData}) => {
-    const { handleDeleteTodo} = useTodos();
+    const { handleDeleteTodo, toggleTodoAsCompleted} = useTodos();
 
   return (
     <div
@@ -12,9 +12,16 @@ const Card = ({exercise}: {exercise: FitnessData}) => {
     key={exercise.id}
   >
     <div>
+      <div className='flex items-center gap-2'>
+      <input type="checkbox" id={`todo-${exercise.id}`} checked={exercise.completed} onChange={() => {
+                            toggleTodoAsCompleted(exercise.id)}
+                        } />
+
       <p>{exercise.exercise}</p>
-      <p className="text-sm text-gray-500">{exercise.reps}</p>
-      <p></p>
+      
+      </div>
+      <p className="text-sm text-gray-500">Reps: {exercise.reps}</p>
+   
     </div>
 
     <div>

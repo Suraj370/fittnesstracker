@@ -1,5 +1,6 @@
 export interface FitnessData {
-  id?: string;
+  id: string;
   exercise: string;
   reps: number;
+  completed: boolean
 }

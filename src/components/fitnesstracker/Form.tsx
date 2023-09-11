@@ -4,10 +4,9 @@ import { Spinner } from "@/libs/Spinner";
 import { useTodos } from "@/store/exercises";
 interface FitnessFormProps {
   afterSave: () => void;
-  exerciseId?: string;
 }
 
-const FitnessForm = ({ afterSave, exerciseId }: FitnessFormProps) => {
+const FitnessForm = ({ afterSave }: FitnessFormProps) => {
   let [saving, setSaving] = useState(false);
 
   const { handleAddTodo } = useTodos();
