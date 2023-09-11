@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { FitnessData } from "./FitnessData";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Spinner } from "@/libs/Spinner";
 import { useTodos } from "@/store/exercises";
 interface FitnessFormProps {
   afterSave: () => void;
+  exerciseId?: string;
 }
-const FitnessForm = ({ afterSave }: FitnessFormProps) => {
+
+const FitnessForm = ({ afterSave, exerciseId }: FitnessFormProps) => {
   let [saving, setSaving] = useState(false);
-  const [todo, setTodo] = useState("");
 
   const { handleAddTodo } = useTodos();
 
@@ -23,17 +23,16 @@ const FitnessForm = ({ afterSave }: FitnessFormProps) => {
     // Use formData.get to extract the values and convert them to the desired types
     const exercise = formData.get("exercise") as string;
     const reps = formData.get("Reps") as string;
-    console.log(exercise);
-    console.log(reps);
-    
+
     
     
   
-    // Check if exercise and reps are not null before calling handleAddTodo
     if (exercise !== null && reps !== null) {
+
       
-      handleAddTodo(exercise, parseInt(reps)); // Assuming reps should be an integer
+      handleAddTodo(exercise, parseInt(reps));
     }
+    
     setSaving(false)
   
   

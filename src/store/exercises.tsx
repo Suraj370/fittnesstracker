@@ -16,7 +16,7 @@ export type ExerciseContext = {
     todos: Exercise[];
     handleAddTodo: (exercise: string, reps:number) => void; //call signature
     toggleTodoAsCompleted: (id: string) => void;
-    handleDeleteTodo: (id: string) => void;
+    handleDeleteTodo: (id: string | undefined) => void;
 }
 
 export const exerciseContext = createContext<ExerciseContext | null>(null)
@@ -37,20 +37,41 @@ export function ExerciseProvider({children}: { children: ReactNode }) {
         
         setTodos((prev) => {
             const newExercises: Exercise[] = [
+                ...prev,
                 {
-                    id: Math.random().toString(),
+                    id: (prev.length + 1).toString(),
                     exercise,
                     reps,
                     completed: false,
                     createdAt: new Date(),
                 },
-                ...prev,
+                
             ];
-            console.log(newExercises)
             localStorage.setItem("exercises", JSON.stringify(newExercises))
             return newExercises;
         })
     }
+
+
+    function updateTodo(exerciseId: string, exercise: string, reps: number) {
+        // Get the current list of todos.
+       console.log(localStorage.getItem("exercises"));
+       
+        // Find the todo with the given ID.
+        const todoIndex = todos.findIndex((todo) => todo.id === exerciseId)
+      
+        // Update the todo.
+        todos[todoIndex] = {
+          id: exerciseId,
+          exercise,
+          reps,
+          completed: false,
+          createdAt: new Date(),
+        }
+      
+        // Save the updated list of todos to localStorage.
+        localStorage.setItem("exercises", JSON.stringify(todos))
+      }
 
     const toggleTodoAsCompleted = (id: string) => {
         setTodos((prev) => {
@@ -66,7 +87,7 @@ export function ExerciseProvider({children}: { children: ReactNode }) {
     }
 
     // handleDeleteTodo
-    function handleDeleteTodo(id: string) {
+    function handleDeleteTodo(id: string |undefined) {
         setTodos((prev) => {
             const newExercises = prev.filter((task) => task.id !== id)
             localStorage.setItem("exercises", JSON.stringify(newExercises));

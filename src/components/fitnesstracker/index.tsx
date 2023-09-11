@@ -1,16 +1,13 @@
 'use client'
 import React, { useState, useEffect } from "react";
 import { Box, Heading } from "@radix-ui/themes";
-import * as Dialog from "@radix-ui/react-dialog";
-import dynamic from "next/dynamic";
-import { FitnessData } from "./FitnessData";
-import { Cross2Icon } from "@radix-ui/react-icons";
-import MyPortal from "./MyDialog";
+
 import MyDialog from "./MyDialog";
 import { useTodos } from "@/store/exercises";
+import Card from "./Card";
 
 const FitnessTracker = () => {
-  const { todos, toggleTodoAsCompleted, handleDeleteTodo } = useTodos();
+  const { todos } = useTodos();
   const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
@@ -32,12 +29,7 @@ const FitnessTracker = () => {
           {isHydrated && (
             <div>
               {todos.map((todo) => (
-                <div key={todo.id}>
-                  <div className="flex items-center justify-between">
-                    <p>{todo.exercise}</p>
-                    <p>Reps: {todo.reps}</p>
-                  </div>
-                </div>
+                <Card key = {todo.id} exercise = {todo}></Card>
               ))}
             </div>
           )}
