@@ -27,7 +27,7 @@ const FitnessTracker = () => {
         <div>
           {/* Conditionally render the todos only after hydration */}
           {isHydrated && (
-            <div>
+            <div className="mt-4">
               {todos.map((todo) => (
                 <Card key = {todo.id} exercise = {todo}></Card>
               ))}
