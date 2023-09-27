@@ -10,7 +10,6 @@ export type Exercise = {
     createdAt: Date;
 }
 
-//thapa technical
 
 export type ExerciseContext = {
     todos: Exercise[];
