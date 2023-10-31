@@ -19,10 +19,7 @@ export default function Home() {
             </h1>
 
             <div className="flex items-center max-lg:justify-center gap-2">
-              <button className=" bg-secondary-8 hover:bg-secondary-9 text-white/80 p-4 rounded-full group inline-flex  items-center gap-4 ">
-                Explore
-                <ArrowRightIcon className=" group-hover:translate-x-1" />
-              </button>
+              
               <Link
                 href="https://github.com/Suraj370/fittnesstracker"
                 className=" bg-secondary-8 hover:bg-secondary-9 text-white/80 p-4 rounded-full group inline-flex  items-center gap-4"
